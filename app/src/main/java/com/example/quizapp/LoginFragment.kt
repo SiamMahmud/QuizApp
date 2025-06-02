@@ -32,6 +32,9 @@ class LoginFragment : Fragment() {
         checkBox = view.findViewById(R.id.btnCheckbox)
         loginErrorTv = view.findViewById(R.id.loginErrorTv)
 
+        // Hide error message initially
+        loginErrorTv.visibility = View.GONE
+
         signInBtn.setOnClickListener {
             handleLogin()
         }
@@ -42,6 +45,12 @@ class LoginFragment : Fragment() {
     private fun handleLogin() {
         val email = emailEt.text.toString().trim()
         val password = passwordEt.text.toString().trim()
+
+        if (email.isEmpty() || password.isEmpty()) {
+            loginErrorTv.visibility = View.VISIBLE
+            loginErrorTv.text = "Please enter both email and password"
+            return
+        }
 
         if (email == "ds@gmail.com" && password == "ds12345678") {
             // Save login state with SharedPreferences
@@ -55,8 +64,9 @@ class LoginFragment : Fragment() {
             }
 
             // Navigate to Dashboard
-            findNavController().navigate(R.id.dashboardFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_dashboardFragment)
         } else {
+            loginErrorTv.visibility = View.VISIBLE
             loginErrorTv.text = "Invalid email or password"
         }
     }

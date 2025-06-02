@@ -31,7 +31,8 @@ class DashboardFragment : Fragment() {
             } else {
                 // Proceed to quiz fragment
                 Toast.makeText(requireContext(), "Welcome $name!", Toast.LENGTH_SHORT).show()
-                 findNavController().navigate(R.id.startQuizFragment)
+                val action = DashboardFragmentDirections.actionDashboardFragmentToStartQuizFragment(0)
+                findNavController().navigate(action)
             }
         }
         return view
