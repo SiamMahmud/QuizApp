@@ -1,80 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/my_nav"
-    app:startDestination="@id/dashboardFragment">
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.quizapp.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        android:label="LoginFragment">
         <action
             android:id="@+id/action_loginFragment_to_dashboardFragment"
             app:destination="@id/dashboardFragment" />
-        <action
-            android:id="@+id/action_loginFragment_to_registrationFragment"
-            app:destination="@id/registrationFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/registrationFragment"
-        android:name="com.example.quizapp.RegistrationFragment"
-        android:label="fragment_registration"
-        tools:layout="@layout/fragment_registration" >
-        <action
-            android:id="@+id/action_registrationFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+
     <fragment
         android:id="@+id/dashboardFragment"
         android:name="com.example.quizapp.DashboardFragment"
-        android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
-        <action
-            android:id="@+id/action_dashboardFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+        android:label="DashboardFragment">
         <action
             android:id="@+id/action_dashboardFragment_to_startQuizFragment"
             app:destination="@id/startQuizFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/startQuizFragment"
         android:name="com.example.quizapp.StartQuizFragment"
-        android:label="fragment_start_quiz"
-        tools:layout="@layout/fragment_start_quiz" >
+        android:label="StartQuizFragment">
         <argument
             android:name="questionIndex"
             app:argType="integer"
             android:defaultValue="0" />
-        <action
-            android:id="@+id/action_startQuizFragment_to_dashboardFragment"
-            app:destination="@id/dashboardFragment" />
         <action
             android:id="@+id/action_startQuizFragment_to_correctAnswerFragment"
             app:destination="@id/correctAnswerFragment" />
         <action
             android:id="@+id/action_startQuizFragment_to_incorrectAnswerFragment"
             app:destination="@id/incorrectAnswerFragment" />
+        <action
+            android:id="@+id/action_startQuizFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/correctAnswerFragment"
         android:name="com.example.quizapp.CorrectAnswerFragment"
-        android:label="fragment_correct_answer"
-        tools:layout="@layout/fragment_correct_answer" >
+        android:label="CorrectAnswerFragment">
         <argument
             android:name="answeredQuestionIndex"
-            app:argType="integer"/>
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_correctAnswerFragment_to_startQuizFragment"
+            app:destination="@id/startQuizFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/incorrectAnswerFragment"
         android:name="com.example.quizapp.IncorrectAnswerFragment"
-        android:label="fragment_incorrect_answer"
-        tools:layout="@layout/fragment_incorrect_answer" >
+        android:label="IncorrectAnswerFragment">
         <argument
             android:name="answeredQuestionIndex"
-            app:argType="integer"/>
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_incorrectAnswerFragment_to_startQuizFragment"
+            app:destination="@id/startQuizFragment" />
     </fragment>
-</navigation>
+
+</navigation> 
